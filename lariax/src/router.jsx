@@ -7,8 +7,11 @@ import GuestLayout from "./components/GuestLayout";
 import Dashboard from "./views/Dashboard";
 import Register from "./views/register";
 import UserForm from "./views/userForm";
-import Bangunrumah from "./views/bangunrumah";
-import Index from "./views/Index";
+import Bangunrumah from "./views/Bangunrumah";
+import Index from "./views/Index.jsx";
+import Materials from "./views/Materials";
+import BeliMaterial from "./views/BeliMaterial";
+import MaterialForm from "./views/materialForm";
 
 
 const router = createBrowserRouter(    [
@@ -32,6 +35,14 @@ const router = createBrowserRouter(    [
             element: <Bangunrumah />
           },
           {
+            path: '/Materials',
+            element: <Materials/>
+          },
+          {
+            path: '/Materials/new',
+            element: <MaterialForm key="materialCreate"/>
+        },
+          {
             path: '/users/new',
             element: <UserForm key="userCreate"/>
         },
@@ -43,6 +54,15 @@ const router = createBrowserRouter(    [
             ]
    },
 
+
+   {
+    path: '/index',
+    element: <Index/>
+  },
+  {
+    path: '/BeliMaterial',
+    element: <BeliMaterial/>
+  },
 
    {
           path: '/',
@@ -57,10 +77,6 @@ const router = createBrowserRouter(    [
             path: '/register',
             element: <Register />
         },
-        {
-          path: '/index',
-          element: <Index/>
-        }
 
 
           ]

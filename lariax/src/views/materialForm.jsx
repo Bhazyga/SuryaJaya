@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import axiosClient from "../axios-Client"
-export default function UserForm() {
+export default function MaterialForm() {
 const {id} = useParams()
 const navigate = useNavigate();
 const [loading , setLoading] = useState(false)
 const [errors, setErrors] = useState( null);
-const [user, setUser] = useState( {
+const [material, setMaterial] = useState( {
   id: null,
   name: '',
   email: '',
@@ -20,10 +20,10 @@ if (id) {
   useEffect( () => {
 
     setLoading(true)
-    axiosClient.get(`/users/${id}`)
+    axiosClient.get(`/Material/${id}`)
       .then(({data}) => {
         setLoading(false)
-        setUser(data)
+        setMaterial(data)
       })
       .catch(() => {
         setLoading(false)
@@ -33,11 +33,11 @@ if (id) {
 
 const onSubmit = (ev) => {
   ev.preventDefault();
-  if (user.id) {
-    axiosClient.put(`/users/${user.id}`, user)
+  if (material.id) {
+    axiosClient.put(`/Material`, material)
     .then(()  => {
       //TODO show notification
-      navigate('/users')
+      navigate('/Material')
     })
     .catch(err => {
       const response = err.response;
@@ -46,10 +46,10 @@ const onSubmit = (ev) => {
       }
     })
   } else {
-    axiosClient.post(`/users`, user)
+    axiosClient.post(`/Material`, material)
     .then(()  => {
       //TODO show notification
-      navigate('../../users')
+      navigate('../../Material')
     })
     .catch(err => {
       const response = err.response;
@@ -65,8 +65,8 @@ const onSubmit = (ev) => {
   return(
 
     <>
-      {user.id && <h1>Update User:{user.name} </h1>}
-      {!user.id && <h1>User Baru</h1>}
+      {material.id && <h1>Update Material:{material.name} </h1>}
+      {!material.id && <h1>Material Baru</h1>}
       <div className="card animated fadeInDown">
         {loading && (
            <div className="text-center">Loading...</div>
@@ -79,17 +79,12 @@ const onSubmit = (ev) => {
             </div>
           }
           {!loading &&
-           <div className="card animated fadeInDown">
+                <div className="card animated fadeInDown">
           <form onSubmit={onSubmit}>
-            <input value={user.name} onChange={ev => setUser({...user,name: ev.target.value})} placeholder="Nama" />
-            <input value={user.email} onChange={ev => setUser({...user,email: ev.target.value})} placeholder="Email" />
-            <select value={user.role} onChange={(ev) => setUser({ ...user, role: ev.target.value })} placeholder="Role">
-  <option value="user">User</option>
-  <option value="admin">Admin</option>
-  <option value="tukang">Tukang</option>
-</select>
-            <input onChange={ev => setUser({...user,password: ev.target.value})} placeholder="Password" />
-            <input onChange={ev => setUser({...user,password_confirmation: ev.target.value})} placeholder="Password Confirmation" />
+            <input value={material.name} onChange={ev => setMaterial({...material,name: ev.target.value})} placeholder="Nama" />
+            <input value={material.email} onChange={ev => setMaterial({...material,email: ev.target.value})} placeholder="Email" />
+            <input onChange={ev => setMaterial({...material,password: ev.target.value})} placeholder="Password" />
+            <input onChange={ev => setMaterial({...material,password_confirmation: ev.target.value})} placeholder="Password Confirmation" />
             <button className="btn">Save</button>
           </form>
           </div>

@@ -3,6 +3,10 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\MaterialController;
+use App\Http\Controllers\bangunRumahController;
+use App\Http\Controllers\BeliMaterialController;
+use App\Http\Controllers\CalculatorController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +32,8 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/index', [AuthController::class,'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/bangunrumah', [AuthController::class,'bangunrumah']);
+Route::post('/bangunrumah', [bangunRumahController::class,'bangunrumah']);
+Route::apiResource('/Materials', MaterialController::class);
+
+// Route::post('/BeliMaterial', [BeliMaterialController::class, 'beliMaterial']);
+// Route::post('/Materials/create', [MaterialController::class, 'create']);

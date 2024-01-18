@@ -2,13 +2,13 @@ import { useEffect, useState } from "react"
 import axiosClient from "../axios-Client"
 import { Link } from "react-router-dom"
 
-export default function Users() {
+export default function Materials({}) {
 
-  const[users, setUser] = useState([])
+  const [Materials, setMaterials] = useState([])
   const [loading, setLoading] = useState (false)
 
   useEffect( () => {
-    getUsers();
+    getMaterials();
   }, [])
 
   const onDelete = (u) => {
@@ -16,20 +16,20 @@ export default function Users() {
       return
     }
 
-    axiosClient.delete( `/users/${u.id}`)
+    axiosClient.delete( `/Materials/${u.id}`)
     .then(()  => {
       //TODO show notification
-      getUsers()
+      getMaterials()
     })
   }
 
-  const getUsers = () => {
+  const getMaterials = () => {
     setLoading(true)
-    axiosClient.get(`/users`)
+    axiosClient.get(`/Materials`)
     .then(({data}) => {
       setLoading(false)
       console.log(data);
-      setUser(data.data)
+      setMaterials(data.data)
     })
     .catch(() => {
       setLoading(false)
@@ -39,9 +39,9 @@ export default function Users() {
     return (
         <div>
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <h1>Users</h1>
+            <h1>Materials</h1>
 
-          <Link to="/users/new" className="btn-add">Add new</Link>
+          <Link to="/Materials/new" className="btn-add">Add new</Link>
           </div>
           <table>
               <thead>
@@ -49,9 +49,11 @@ export default function Users() {
                 <tr>
             <th>ID</th>
             <th>Nama</th>
-            <th>Email</th>
-            <th>Create Date</th>
-            <th>Role</th>
+            <th>Deskripsi</th>
+            <th>Kategori</th>
+            <th>Stok</th>
+            <th>Harga</th>
+            <th>Gambar</th>
             <th>Actions</th>
             </tr>
             </thead>
@@ -65,15 +67,17 @@ export default function Users() {
               </tr>
             </tbody>}
             <tbody>
-              {users.map(u => (
+              {Materials.map(u => (
               <tr>
              <td>{u.id}</td>
-             <td>{u.name}</td>
-             <td>{u.email}</td>
-             <td>{u.created_at}</td>
-             <td>{u.role}</td>
+             <td>{u.nama}</td>
+             <td>{u.deskripsi.slice(0,55)}</td>
+             <td>{u.kategori}</td>
+             <td>{u.stok}</td>
+             <td>{u.harga}</td>
+             <td>{u.gambar}</td>
              <td>
-              <Link className="btn-edit" to={'/users/'+u.id}>Edit</Link>
+              <Link className="btn-edit" to={'/Materials/'+u.id}>Edit</Link>
               &nbsp;
               <button onClick = { ev => onDelete(u)} className="btn-delete">Delete</button>
              </td>

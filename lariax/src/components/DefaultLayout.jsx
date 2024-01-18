@@ -6,6 +6,8 @@ import axiosClient from "../axios-Client";
 export default function DefaultLayout () {
   const {user,token, setUser, setToken} = useStateContext()
 
+  console.log(user);
+
   if (!token) {
     return <Navigate to= "/index"/>
   }
@@ -35,11 +37,13 @@ export default function DefaultLayout () {
     <Link to='/users'>Users</Link>
 ) : null}
     <Link to='/bangunrumah'>Bangun Rumah</Link>
+    <Link to='/Materials'>Material</Link>
+    <Link to='/index'>Halaman Utama</Link>
   </aside>
   <div className="content">
     <header>
       <div>
-        Hallo Admin
+        Hallo {user.name}
       </div>
 <div>
  {user.name}

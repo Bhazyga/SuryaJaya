@@ -26,9 +26,8 @@ class UpdateUserRequest extends FormRequest
             return [
                 'name' => 'required|string|max:55',
                 'email' => 'required|email|unique:users,email,$this->id',
-                'role' => 'user',
+                'role' => 'required|string|max:10',
                 'password' => [
-                    'required',
                     'confirmed',
                     Password::min(6)
                     ->letters()

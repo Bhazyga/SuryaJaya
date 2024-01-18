@@ -8,6 +8,17 @@ html, body, #root, #defaultLayout, #guestLayout {
     min-height: 100vh;
 }
 
+
+.animasinavbar {
+  opacity: 1;
+  transition: opacity 1.2s, transform 0.3s ease-in-out;
+}
+
+.animasinavbar:hover {
+  transform: scale(1.1);
+}
+
+
 h1, h2, h3, h4, h5, h6, p {
     margin: 0;
 }
