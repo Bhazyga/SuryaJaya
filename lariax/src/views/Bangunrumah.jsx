@@ -141,14 +141,7 @@ export default function Bangunrumah() {
 
           <div className=''>
             <select onChange={(e) => handlPilihanKeempat(e.target.value)}>
-              <option value="">Contoh 1 </option>
-              {selectedType && materials
-                .filter(material => material.kategori === selectedType) // Filter materials based on selectedType
-                .map(material => (
-                  <option key={material.id} value={material.nama}>
-                    {material.nama}
-                  </option>
-                ))}
+              <option value=""></option>
             </select>
           </div>
 

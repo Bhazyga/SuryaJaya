@@ -16,7 +16,7 @@ export default function Materials({}) {
       return
     }
 
-    axiosClient.delete( `/Materials/${u.id}`)
+    axiosClient.delete( `/materials/${u.id}`)
     .then(()  => {
       //TODO show notification
       getMaterials()
@@ -25,7 +25,7 @@ export default function Materials({}) {
 
   const getMaterials = () => {
     setLoading(true)
-    axiosClient.get(`/Materials`)
+    axiosClient.get(`/materials`)
     .then(({data}) => {
       setLoading(false)
       console.log(data);
@@ -41,7 +41,7 @@ export default function Materials({}) {
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
             <h1>Materials</h1>
 
-          <Link to="/Materials/new" className="btn-add">Add new</Link>
+          <Link to="/materials/new" className="btn-add">Add new</Link>
           </div>
           <table>
               <thead>
@@ -77,7 +77,7 @@ export default function Materials({}) {
              <td>{u.harga}</td>
              <td>{u.gambar}</td>
              <td>
-              <Link className="btn-edit" to={'/Materials/'+u.id}>Edit</Link>
+              <Link className="btn-edit" to={'/materials/'+u.id}>Edit</Link>
               &nbsp;
               <button onClick = { ev => onDelete(u)} className="btn-delete">Delete</button>
              </td>

@@ -6,38 +6,39 @@ const {id} = useParams()
 const navigate = useNavigate();
 const [loading , setLoading] = useState(false)
 const [errors, setErrors] = useState( null);
-const [material, setMaterial] = useState( {
+const [Material, setMaterial] = useState( {
   id: null,
-  name: '',
-  email: '',
-  password: '',
-  password_confirmation: '',
+  nama: '',
+  deskripsi:'',
+  kategori: '',
+  stok: '',
+  harga:'',
+  gambar:'',
+
 })
 
 
 
-if (id) {
-  useEffect( () => {
+useEffect(() => {
+  setLoading(true);
+  axiosClient.get(`/materials/${id}`)
+    .then(({ data }) => {
+      setLoading(false);
+      setMaterial(data.data); //Ini ada di dalam data pas di consolelog makanya begini
+    })
+    .catch(() => {
+      setLoading(false);
+    });
+}, []);
 
-    setLoading(true)
-    axiosClient.get(`/Material/${id}`)
-      .then(({data}) => {
-        setLoading(false)
-        setMaterial(data)
-      })
-      .catch(() => {
-        setLoading(false)
-      })
-  }, [])
-}
 
 const onSubmit = (ev) => {
   ev.preventDefault();
-  if (material.id) {
-    axiosClient.put(`/Material`, material)
+  if (Material.id) {
+    axiosClient.put(`/materials/${Material.id}`, Material)
     .then(()  => {
       //TODO show notification
-      navigate('/Material')
+      navigate('/materials')
     })
     .catch(err => {
       const response = err.response;
@@ -46,10 +47,10 @@ const onSubmit = (ev) => {
       }
     })
   } else {
-    axiosClient.post(`/Material`, material)
+    axiosClient.post(`/materials`, Material)
     .then(()  => {
       //TODO show notification
-      navigate('../../Material')
+      navigate('../../materials')
     })
     .catch(err => {
       const response = err.response;
@@ -61,12 +62,13 @@ const onSubmit = (ev) => {
   }
 }
 
+console.log(Material);
 
   return(
 
     <>
-      {material.id && <h1>Update Material:{material.name} </h1>}
-      {!material.id && <h1>Material Baru</h1>}
+      {Material.id && <h1>Update Material:{Material.nama} </h1>}
+      {!Material.id && <h1>Material Baru</h1>}
       <div className="card animated fadeInDown">
         {loading && (
            <div className="text-center">Loading...</div>
@@ -79,12 +81,14 @@ const onSubmit = (ev) => {
             </div>
           }
           {!loading &&
-                <div className="card animated fadeInDown">
+           <div className="card animated fadeInDown">
           <form onSubmit={onSubmit}>
-            <input value={material.name} onChange={ev => setMaterial({...material,name: ev.target.value})} placeholder="Nama" />
-            <input value={material.email} onChange={ev => setMaterial({...material,email: ev.target.value})} placeholder="Email" />
-            <input onChange={ev => setMaterial({...material,password: ev.target.value})} placeholder="Password" />
-            <input onChange={ev => setMaterial({...material,password_confirmation: ev.target.value})} placeholder="Password Confirmation" />
+            <input value={Material.nama} onChange={ev => setMaterial({...Material,nama: ev.target.value})} placeholder="Nama" />
+            <input value={Material.deskripsi} onChange={ev => setMaterial({...Material,deskripsi: ev.target.value})} placeholder="Deskripsi" />
+            <input value={Material.kategori} onChange={ev => setMaterial({...Material,kategori: ev.target.value})} placeholder="Kategori" />
+            <input value={Material.stok} onChange={ev => setMaterial({...Material,stok: ev.target.value})} placeholder="Stok" />
+            <input value={Material.harga} onChange={ev => setMaterial({...Material,harga: ev.target.value})} placeholder="Harga" />
+            <input value={Material.gambar} onChange={ev => setMaterial({...Material,gambar: ev.target.value})} placeholder="gambar" />
             <button className="btn">Save</button>
           </form>
           </div>

@@ -33,7 +33,12 @@ Route::post('/index', [AuthController::class,'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/bangunrumah', [bangunRumahController::class,'bangunrumah']);
-Route::apiResource('/Materials', MaterialController::class);
+
+Route::apiResource('/materials', MaterialController::class);
+
+Route::get('/materials/:id', [MaterialController::class, 'show']);
+
+
 
 // Route::post('/BeliMaterial', [BeliMaterialController::class, 'beliMaterial']);
 // Route::post('/Materials/create', [MaterialController::class, 'create']);

@@ -32,8 +32,9 @@ class MaterialController extends Controller
      */
     public function show(Material $material)
     {
-        //
+        return new MaterialResource($material);
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -48,6 +49,9 @@ class MaterialController extends Controller
      */
     public function destroy(Material $material)
     {
-        //
+        $material->delete();
+
+        return response( "", 204);
+
     }
 }

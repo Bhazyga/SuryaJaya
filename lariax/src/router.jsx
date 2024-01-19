@@ -35,12 +35,16 @@ const router = createBrowserRouter(    [
             element: <Bangunrumah />
           },
           {
-            path: '/Materials',
+            path: '/materials',
             element: <Materials/>
           },
           {
-            path: '/Materials/new',
+            path: '/materials/new',
             element: <MaterialForm key="materialCreate"/>
+        },
+          {
+            path: '/materials/:id',
+            element: <MaterialForm key="materialUpdate"/>
         },
           {
             path: '/users/new',
