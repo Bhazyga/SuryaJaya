@@ -19,6 +19,38 @@ const [Material, setMaterial] = useState( {
 
 
 
+
+const decodeImageFile = (file) => {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      const imageDataURL = reader.result;
+      resolve(imageDataURL);
+    };
+
+    reader.onerror = () => {
+      reject(reader.error);
+    };
+
+    reader.readAsDataURL(file);
+  });
+};
+
+const handleImageChange = (ev) => {
+  const file = ev.target.files[0];
+  if (file) {
+    decodeImageFile(file)
+      .then((imageDataURL) => {
+        setMaterial({ ...Material, gambar: imageDataURL });
+      })
+      .catch((error) => {
+        console.error("Error decoding image file:", error);
+      });
+  }
+};
+
+
 useEffect(() => {
   setLoading(true);
   axiosClient.get(`/materials/${id}`)
@@ -85,12 +117,31 @@ console.log(Material);
           <form onSubmit={onSubmit}>
             <input value={Material.nama} onChange={ev => setMaterial({...Material,nama: ev.target.value})} placeholder="Nama" />
             <input value={Material.deskripsi} onChange={ev => setMaterial({...Material,deskripsi: ev.target.value})} placeholder="Deskripsi" />
-            <input value={Material.kategori} onChange={ev => setMaterial({...Material,kategori: ev.target.value})} placeholder="Kategori" />
+            <select value={Material.kategori} onChange={ev => setMaterial({...Material, kategori: ev.target.value})}>
+              <option value="">Pilih Kategori</option>
+              <option value="genteng">Genteng</option>
+              <option value="batu">Batu</option>
+              <option value="cat">Cat</option>
+              <option value="fondasi">Fondasi</option>
+              <option value="semen">Semen</option>
+              <option value="lantai">Lantai</option>
+            </select>
             <input value={Material.stok} onChange={ev => setMaterial({...Material,stok: ev.target.value})} placeholder="Stok" />
             <input value={Material.harga} onChange={ev => setMaterial({...Material,harga: ev.target.value})} placeholder="Harga" />
-            <input value={Material.gambar} onChange={ev => setMaterial({...Material,gambar: ev.target.value})} placeholder="gambar" />
-            <button className="btn">Save</button>
-          </form>
+            <div>
+      {/* Input for selecting image file */}
+      <input type="file" accept=".jpg,.jpeg" onChange={handleImageChange} />
+      {/* Display the image */}
+      {Material.gambar && (
+          <div>
+            <img src={Material.gambar} alt="Material" />
+            {/* Log the Material.gambar state */}
+            {console.log(Material.gambar)}
+          </div>
+        )}
+    </div>
+              <button className="btn">Save</button>
+            </form>
           </div>
 }
       </div>

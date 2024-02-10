@@ -28,7 +28,6 @@ export default function Materials({}) {
     axiosClient.get(`/materials`)
     .then(({data}) => {
       setLoading(false)
-      console.log(data);
       setMaterials(data.data)
     })
     .catch(() => {
@@ -75,7 +74,12 @@ export default function Materials({}) {
              <td>{u.kategori}</td>
              <td>{u.stok}</td>
              <td>{u.harga}</td>
-             <td>{u.gambar}</td>
+             <td>
+                <img
+                  src={`http://localhost:8000/storage/images/${u.gambar}`}
+                  style={{ width: "100px", height: "100px" }}
+                />
+              </td>
              <td>
               <Link className="btn-edit" to={'/materials/'+u.id}>Edit</Link>
               &nbsp;

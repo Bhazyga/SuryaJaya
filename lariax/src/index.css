@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 @import url('https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     box-sizing: border-box;
@@ -44,9 +47,6 @@ input {
     transition: all 0.3s;
 }
 
-input:focus {
-    border-color: #5b08a7;
-}
 
 .btn,
 .btn-add,
@@ -54,11 +54,10 @@ input:focus {
 .btn-delete {
     font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #5b08a7;
     border: 0;
+    background-color:lightblue;
     text-decoration: none;
     padding: 15px;
-    color: #FFFFFF;
     font-size: 16px;
     -webkit-transition: all 0.3 ease;
     transition: all 0.3 ease;
@@ -97,7 +96,7 @@ input:focus {
 .btn:hover,
 .btn:active,
 .btn:focus {
-    background: #5b08a7;
+    background:aqua;
 }
 
 .text-center {
@@ -183,7 +182,7 @@ table > tbody > tr > td {
 }
 
 .login-signup-form .form .message a {
-    color: #5b08a7;
+    color: #0e3903;
     text-decoration: none;
 }
 

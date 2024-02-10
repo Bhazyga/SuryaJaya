@@ -30,8 +30,7 @@ export default function Navbar  () {
   }, []);
 
   return (
-    <nav style={{
-      position: 'absolute' }}>
+    <nav style={{position: 'absolute', letterSpacing:'0.5px' }}>
       <div >
         <div >
           <Link to="/index">
@@ -45,26 +44,32 @@ export default function Navbar  () {
             </Link>
           </div>
           <div className=''>
-          <Link to="/index" className='btn rounded-4' style={{ marginTop: '-80px', marginLeft: '200px', position: 'absolute', background: '#001000' }}>
+          <Link to="/index" className='btn bg-sky-200 rounded-4' style={{ marginTop: '-80px', marginLeft: '200px', position: 'absolute',  }}>
             Beranda
           </Link>
-          <Link to="/BeliMaterial" className='btn rounded-4' style={{ width:'100%', marginTop: '-80px', marginLeft: '400px', position: 'absolute', background: '#001000' }}>
+          <Link to="/dashboard" className='btn bg-sky-200 rounded-4' style={{ marginTop: '-80px', marginLeft: '700px', position: 'absolute' }}>
+            Dashboard
+          </Link>
+          { user.role != null ? null : (
+          <Link to="/login" className='btn bg-sky-200 rounded-4' style={{ marginTop: '-80px', marginLeft: '1100px', position: 'absolute'}}>
+            Login
+          </Link>
+          )}
+          <Link to="/BeliMaterial" className='btn bg-sky-200 rounded-4' style={{ width:'100%', marginTop: '-80px', marginLeft: '400px', position: 'absolute' }}>
             Beli Material
           </Link>
           { user.role != null ? null : (
-          <Link to="/register" style={{ marginTop: '-80px', marginLeft: '1000px', position: 'absolute', display: 'flex', alignItems: 'center',textDecoration:'none' }}>
-            <span style={{ marginLeft: '5px', background: '#001000', color: 'white', padding: '8px', borderRadius: '20px' }}>
+            <div className='btn bg-sky-200 rounded-4'
+            style={{width:'100%', marginTop: '-80px', marginLeft: '900px', position: 'absolute'}}
+            >
+          <Link to="/register">
+            <span style={{color: 'black', padding: '8px', borderRadius: '20px'}}>
               <FontAwesomeIcon className='' icon={faUserSecret} />
               Register
             </span>
           </Link>
+          </div>
           )}
-          <Link to="/Tools" style={{ marginTop: '-75px', marginLeft: '900px', position: 'absolute' , textDecoration:'none' }}>
-               <span style={{ marginLeft: '5px', background: '#001000', color: 'white', padding: '8px', borderRadius: '20px'  }}>
-              <FontAwesomeIcon className='' icon={faUserSecret} />
-              Tools
-            </span>
-          </Link>
         </div>
       </div>
     </nav>

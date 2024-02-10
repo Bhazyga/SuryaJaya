@@ -4,12 +4,12 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateMaterialRequest extends FormRequest
+class StoreMaterialRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
-    public function authorize(): bool
+    public function authorize()
     {
         return true;
     }
@@ -22,12 +22,13 @@ class UpdateMaterialRequest extends FormRequest
     public function rules()
     {
         return [
-            'nama' => 'required|string|max:55',
+            'nama' => 'required|string|max:555',
             'deskripsi' => 'required|string|max:105',
             'kategori' => 'required|string|max:55',
             'stok' => 'required|string|max:1000000000',
             'harga' => 'required|int|max:1000000000',
-            'gambar' => 'required|string|max:55',
+            'gambar' => 'required|string|max:922222222',
+
         ];
     }
 }

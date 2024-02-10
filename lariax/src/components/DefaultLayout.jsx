@@ -28,16 +28,20 @@ export default function DefaultLayout () {
   })
  }, [])
 
+console.log(user);
 
   return (
 <div id="defaultLayout">
   <aside>
     <Link to='/dashboard'>Dashboard</Link>
+    <Link to='/bangunrumah'>Bangun Rumah</Link>
     {user.role === 'admin' ? (
     <Link to='/users'>Users</Link>
-) : null}
-    <Link to='/bangunrumah'>Bangun Rumah</Link>
+    ) : null}
+    {user.role === 'admin' ? (
     <Link to='/Materials'>Material</Link>
+    ) : null }
+    <Link to='/index'>Data Pembelian</Link>
     <Link to='/index'>Halaman Utama</Link>
   </aside>
   <div className="content">
@@ -46,7 +50,7 @@ export default function DefaultLayout () {
         Hallo {user.name}
       </div>
 <div>
- {user.name}
+ {user.email}
  <a href="#" onClick={onLogout} className="btn-logout">Logout</a>
 </div>
     </header>
