@@ -39,9 +39,9 @@ export default function Users() {
     return (
         <div>
           <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-            <h1>Users</h1>
+            <h1>Dashboard Users</h1>
 
-          <Link to="/users/new" className="btn-add">Add new</Link>
+          <Link to="/users/new" className="btn-add">Tambah</Link>
           </div>
           <table>
               <thead>
@@ -50,7 +50,7 @@ export default function Users() {
             <th>ID</th>
             <th>Nama</th>
             <th>Email</th>
-            <th>Create Date</th>
+            <th>Waktu Pembuatan Akun</th>
             <th>Role</th>
             <th>Actions</th>
             </tr>

@@ -61,6 +61,7 @@ export default function BeliMaterial() {
     }
   };
 
+
   return (
     <div>
       <Navbar />
@@ -189,14 +190,15 @@ export default function BeliMaterial() {
                />
             </div>
             <Link
-              to={{
-                pathname: `/BeliMaterialDetail/${material.id}`,
-                state: { materialData: material }  // Pass material data as state
-              }}
-              className="bg-gradient-to-l from-cyan-300 to-blue-400 text-white rounded hover-button p-2 mt-2"
-            >
-              Beli
-            </Link>
+             onClick={() => console.log("Material Data:", material)}
+  to={{
+    pathname: `/BeliMaterialDetail/${material.id}`,
+    useState: { materialData: material }
+  }}
+  className="bg-gradient-to-l from-cyan-300 to-blue-400 text-white rounded hover-button p-2 mt-2"
+>
+  Beli
+</Link>
           </Card>
         ))}
       </div>

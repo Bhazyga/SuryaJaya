@@ -125,6 +125,7 @@ console.log(Material);
               <option value="fondasi">Fondasi</option>
               <option value="semen">Semen</option>
               <option value="lantai">Lantai</option>
+              <option value="pasir">Pasir</option>
             </select>
             <input value={Material.stok} onChange={ev => setMaterial({...Material,stok: ev.target.value})} placeholder="Stok" />
             <input value={Material.harga} onChange={ev => setMaterial({...Material,harga: ev.target.value})} placeholder="Harga" />

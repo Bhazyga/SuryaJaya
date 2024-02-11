@@ -35,7 +35,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/bangunrumah', [bangunRumahController::class,'bangunrumah']);
 Route::apiResource('/materials', MaterialController::class);
 Route::get('/materials/{id}', [MaterialController::class, 'show']);
-Route::get('/BeliMaterialDetail{id}', [MaterialController::class, 'detailUserBeli']);
+Route::get('/BeliMaterialDetail/{id}', [MaterialController::class, 'detailUserBeli']);
+
 
 
 

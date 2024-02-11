@@ -12,7 +12,7 @@ import Index from "./views/Index.jsx";
 import Materials from "./views/Materials";
 import BeliMaterial from "./views/BeliMaterial";
 import MaterialForm from "./views/materialForm";
-import DetailMaterial from "./views/DetailMaterial";
+import BeliMaterialDetail from "./views/DetailMaterial"
 
 
 const router = createBrowserRouter(    [
@@ -70,7 +70,7 @@ const router = createBrowserRouter(    [
   },
   {
     path: '/BeliMaterialDetail/:id',
-    element: <DetailMaterial/>
+    element: <BeliMaterialDetail/>
   },
 
    {
