@@ -27,7 +27,7 @@ class UpdateMaterialRequest extends FormRequest
             'kategori' => 'required|string|max:55',
             'stok' => 'required|string|max:1000000000',
             'harga' => 'required|int|max:1000000000',
-            'gambar' => 'required|string|max:55',
+            'gambar' => 'required|string|max:59999995',
         ];
     }
 }

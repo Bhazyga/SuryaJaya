@@ -18,4 +18,10 @@ class Material extends Model
         'harga',
         'gambar',
     ];
+
+    public function pembelians()
+    {
+        return $this->hasMany(Pembelian::class);
+    }
+
 }

@@ -62,7 +62,7 @@ import { useStateContext } from "../context/ContextProvider.jsx";
           <input ref={passwordConfirmationRef} type="password" placeholder="Konfirmasi Password" />
           <button className="btn btn-block">Masuk</button>
           <p className="message">
-            Punya akun lu? <Link to="/login">Login</Link>
+            Sudah Memiliki Akun? <Link to="/login">Login</Link>
           </p>
         </form>
 

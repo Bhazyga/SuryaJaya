@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export default function BeliMaterial() {
   const [materials, setMaterials] = useState([]);
   const [loading, setLoading] = useState(true);
-  const itemsPerPage = 10;
+  const itemsPerPage = 3;
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -60,7 +60,6 @@ export default function BeliMaterial() {
       setSelectedCategories(prevCategories => [...prevCategories, category]);
     }
   };
-
 
   return (
     <div>
@@ -176,7 +175,6 @@ export default function BeliMaterial() {
         {getCurrentPageData().map((material) => (
           <Card key={material.id} className="card animated fadeInDown mt-4 bg-gradient-to-r from-cyan-200 to-blue-100" style={{ color: 'black' }}>
             {/* Render material details */}
-            <div>ID: {material.id}</div>
             <div>Nama: {material.nama}</div>
             <div>Deskripsi: {material.deskripsi}</div>
             <div>Kategori: {material.kategori}</div>
@@ -190,15 +188,14 @@ export default function BeliMaterial() {
                />
             </div>
             <Link
-             onClick={() => console.log("Material Data:", material)}
-  to={{
-    pathname: `/BeliMaterialDetail/${material.id}`,
-    useState: { materialData: material }
-  }}
-  className="bg-gradient-to-l from-cyan-300 to-blue-400 text-white rounded hover-button p-2 mt-2"
->
-  Beli
-</Link>
+              to={{
+                pathname: `/BeliMaterialDetail/${material.id}`,
+                state: { materialData: material }  // Pass material data as state
+              }}
+              className="bg-gradient-to-l from-cyan-300 to-blue-400 text-white rounded hover-button p-2 mt-2"
+            >
+              Beli
+            </Link>
           </Card>
         ))}
       </div>

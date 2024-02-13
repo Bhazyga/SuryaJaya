@@ -450,35 +450,38 @@ console.log('Total Approximately Equal to One:', totalApproximatelyOne);
         </tbody>
       </table>
 
-      <table>
-        <thead>
-          <tr>
-            <th>Material</th>
-            <th>Kategori</th>
-            <th>Harga</th>
-          </tr>
-        </thead>
-        {showResults && (
-        <tbody>
-<div className="recommended-materials">
-    {recommendedMaterials.map((material, index) => (
-        <div key={index} className="material-column">
-            <h3>{MATERIAL_CATEGORIES[index]}</h3>
-            {material ? (
-                <div>
-                    <p>Name: {material.nama}</p>
-                    <p>Category: {material.kategori}</p>
-                    <p>Price: {material.harga}</p>
-                </div>
-            ) : (
-                <p>No recommended material found for this category</p>
-            )}
-        </div>
-    ))}
-</div>
-        </tbody>
+      {showResults && (
+    <div className="recommended-materials">
+        <table>
+            <thead>
+                <tr>
+                    <th>Kategori</th>
+                    <th>Material</th>
+                    <th>Harga</th>
+                </tr>
+            </thead>
+            <tbody>
+                {recommendedMaterials.map((material, index) => (
+                    <tr key={index}>
+                        <td>{MATERIAL_CATEGORIES[index]}</td>
+                        <td>
+                            {material ? (
+                                <div>
+                                    <p>{material.nama}</p>
+                                </div>
+                            ) : (
+                                <p>Material Yang Anda Cari Tidak Ada Yang Cocok Dengan Bobot AHP</p>
+                            )}
+                        </td>
+
+                        <td>{material ? material.harga : "-"}</td>
+                    </tr>
+                ))}
+            </tbody>
+        </table>
+    </div>
 )}
-      </table>
+
     </>
   );
 }

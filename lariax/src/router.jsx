@@ -13,6 +13,8 @@ import Materials from "./views/Materials";
 import BeliMaterial from "./views/BeliMaterial";
 import MaterialForm from "./views/materialForm";
 import BeliMaterialDetail from "./views/DetailMaterial"
+import DataPembelian from "./views/DataPembelian";
+import RiwayatPembelian from "./views/RiwayatPembelian";
 
 
 const router = createBrowserRouter(    [
@@ -54,6 +56,14 @@ const router = createBrowserRouter(    [
         {
           path: '/users/:id',
           element: <UserForm key="userUpdate"/>
+      },
+      {
+        path: '/datapembelian',
+        element:<DataPembelian key="datapembelian"/>
+      },
+      {
+        path: '/riwayatpembelian',
+        element:<RiwayatPembelian key="datapembelian"/>
       }
 
             ]

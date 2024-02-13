@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\MaterialController;
 use App\Http\Controllers\bangunRumahController;
 use App\Http\Controllers\BeliMaterialController;
 use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\PembelianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,6 +38,10 @@ Route::apiResource('/materials', MaterialController::class);
 Route::get('/materials/{id}', [MaterialController::class, 'show']);
 Route::get('/BeliMaterialDetail/{id}', [MaterialController::class, 'detailUserBeli']);
 
+
+Route::post('/pembelian', [PembelianController::class, 'store']);
+Route::get('/riwayatpembelian', [PembelianController::class, 'index']);
+Route::put('/konfirmasipembelian/{id}', [PembelianController::class, 'konfirmasi']);
 
 
 

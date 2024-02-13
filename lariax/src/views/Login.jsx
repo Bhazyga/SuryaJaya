@@ -51,14 +51,14 @@ import { useStateContext } from "../context/ContextProvider";
             <input ref={passwordRef} type="password" placeholder="Password" />
             <button className="btn btn-block">Login</button>
             <p className="message">
-              Belum daftar pren? <Link to="/register">Buat Akun</Link>
+              Belum daftar ? <Link to="/register">Buat Akun</Link>
             </p>
           </form>
         </div>
 
         {/* Add an image on the side */}
         <div className="side-image">
-          <img src="dupir.jpg" alt="Side Image" style={{maxWidth:'211px'}}/>
+          <img src="TBSURYAJAYA.png" alt="Side Image" style={{marginLeft:'20px',maxWidth:'251px'}}/>
         </div>
       </div>
     </div>

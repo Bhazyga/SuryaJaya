@@ -41,7 +41,12 @@ console.log(user);
     {user.role === 'admin' ? (
     <Link to='/Materials'>Material</Link>
     ) : null }
-    <Link to='/index'>Data Pembelian</Link>
+    {user.role === 'admin' ? (
+    <Link to='/datapembelian'>Data Pembelian</Link>
+    ) : null }
+
+    <Link to='/riwayatpembelian'>Riwayat Pembelian</Link>
+
     <Link to='/index'>Halaman Utama</Link>
   </aside>
   <div className="content">
