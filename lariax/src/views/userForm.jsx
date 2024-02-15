@@ -34,7 +34,7 @@ if (id) {
 const onSubmit = (ev) => {
   ev.preventDefault();
   if (user.id) {
-    axiosClient.put(`/users`, user)
+    axiosClient.put(`/users/${user.id}`, user)
     .then(()  => {
       //TODO show notification
       navigate('/users')
@@ -79,16 +79,22 @@ const onSubmit = (ev) => {
             </div>
           }
           {!loading &&
+           <div className="card animated fadeInDown">
           <form onSubmit={onSubmit}>
             <input value={user.name} onChange={ev => setUser({...user,name: ev.target.value})} placeholder="Nama" />
             <input value={user.email} onChange={ev => setUser({...user,email: ev.target.value})} placeholder="Email" />
+            <select value={user.role} onChange={(ev) => setUser({ ...user, role: ev.target.value })} placeholder="Role">
+  <option value="user">User</option>
+  <option value="admin">Admin</option>
+  <option value="tukang">Tukang</option>
+</select>
             <input onChange={ev => setUser({...user,password: ev.target.value})} placeholder="Password" />
             <input onChange={ev => setUser({...user,password_confirmation: ev.target.value})} placeholder="Password Confirmation" />
             <button className="btn">Save</button>
           </form>
+          </div>
 }
       </div>
-      <h1>User Baru</h1>
     </>
   )
 }

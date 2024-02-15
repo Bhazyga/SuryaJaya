@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index()
     {
         return UserResource::collection(
-        User::query()->orderBy('id','desc')->paginate(10)
+        User::query()->orderBy('id')->paginate(20)
         );
         }
 
@@ -50,6 +50,7 @@ class UserController extends Controller
         if (isset($data['password'])) {
             $data['password'] = bcrypt($data['password']);
         }
+        // $data['role'] = $data['role'] ?? 'user';
         $user->update($data);
 
         return new UserResource($user);

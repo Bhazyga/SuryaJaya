@@ -7,8 +7,14 @@ import GuestLayout from "./components/GuestLayout";
 import Dashboard from "./views/Dashboard";
 import Register from "./views/register";
 import UserForm from "./views/userForm";
-import Bangunrumah from "./views/bangunrumah";
-import Index from "./views/Index";
+import Bangunrumah from "./views/Bangunrumah";
+import Index from "./views/Index.jsx";
+import Materials from "./views/Materials";
+import BeliMaterial from "./views/BeliMaterial";
+import MaterialForm from "./views/materialForm";
+import BeliMaterialDetail from "./views/DetailMaterial"
+import DataPembelian from "./views/DataPembelian";
+import RiwayatPembelian from "./views/RiwayatPembelian";
 
 
 const router = createBrowserRouter(    [
@@ -32,17 +38,50 @@ const router = createBrowserRouter(    [
             element: <Bangunrumah />
           },
           {
+            path: '/materials',
+            element: <Materials/>
+          },
+          {
+            path: '/materials/new',
+            element: <MaterialForm key="materialCreate"/>
+        },
+          {
+            path: '/materials/:id',
+            element: <MaterialForm key="materialUpdate"/>
+        },
+          {
             path: '/users/new',
             element: <UserForm key="userCreate"/>
         },
         {
           path: '/users/:id',
           element: <UserForm key="userUpdate"/>
+      },
+      {
+        path: '/datapembelian',
+        element:<DataPembelian key="datapembelian"/>
+      },
+      {
+        path: '/riwayatpembelian',
+        element:<RiwayatPembelian key="datapembelian"/>
       }
 
             ]
    },
 
+
+   {
+    path: '/index',
+    element: <Index/>
+  },
+  {
+    path: '/BeliMaterial',
+    element: <BeliMaterial/>
+  },
+  {
+    path: '/BeliMaterialDetail/:id',
+    element: <BeliMaterialDetail/>
+  },
 
    {
           path: '/',
@@ -57,10 +96,6 @@ const router = createBrowserRouter(    [
             path: '/register',
             element: <Register />
         },
-        {
-          path: '/index',
-          element: <Index/>
-        }
 
 
           ]

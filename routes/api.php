@@ -3,6 +3,11 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\MaterialController;
+use App\Http\Controllers\bangunRumahController;
+use App\Http\Controllers\BeliMaterialController;
+use App\Http\Controllers\CalculatorController;
+use App\Http\Controllers\PembelianController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +33,17 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::post('/index', [AuthController::class,'index']);
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
-Route::post('/bangunrumah', [AuthController::class,'bangunrumah']);
+Route::post('/bangunrumah', [bangunRumahController::class,'bangunrumah']);
+Route::apiResource('/materials', MaterialController::class);
+Route::get('/materials/{id}', [MaterialController::class, 'show']);
+Route::get('/BeliMaterialDetail/{id}', [MaterialController::class, 'detailUserBeli']);
+
+
+Route::post('/pembelian', [PembelianController::class, 'store']);
+Route::get('/riwayatpembelian', [PembelianController::class, 'index']);
+Route::put('/datapembelian/{id}', [PembelianController::class, 'konfirmasi']);
+
+
+
+// Route::post('/BeliMaterial', [BeliMaterialController::class, 'beliMaterial']);
+// Route::post('/Materials/create', [MaterialController::class, 'create']);
