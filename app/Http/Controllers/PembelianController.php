@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Pembelian;
+use Illuminate\Support\Facades\Log;
 
 class PembelianController extends Controller
 {
@@ -12,7 +13,7 @@ class PembelianController extends Controller
         // Validate the incoming request data
         $validatedData = $request->validate([
             'material_id' => 'required|exists:materials,id',
-            'nohp' => 'required|string|min:8',
+            'nohp' => 'required|integer|min:8',
             'namamaterial' => 'required|string',
             'alamat' => 'required|string',
             'status' => 'required|string',
@@ -41,23 +42,17 @@ class PembelianController extends Controller
         return response()->json($pembelian);
     }
 
-    public function konfirmasi(Request $request, Pembelian $pembelian)
+    public function konfirmasi($id)
     {
-        // Validate the incoming request data
-        $validatedData = $request->validate([
-            'material_id' => 'required|exists:materials,id',
-            'nohp' => 'required|string|min:8|max:20',
-            'namamaterial' => 'required|string',
-            'alamat' => 'required|string',
-            'status' => 'required|string',
-            'namapembeli' => 'required|string',
-            'quantity' => 'required|integer|min:1',
-        ]);
 
-        // Update the attributes of the pembelian
-        $pembelian->update($validatedData);
-
-        return response()->json(['message' => 'Data updated successfully']);
+        $pembelian = Pembelian::find($id);
+        if ($pembelian) {
+            $pembelian->status = 'Pembelian Berhasil';
+            $pembelian->save();
+            return response()->json(['message' => 'Status pembelian updated successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Pembelian not found.'], 404);
+        }
     }
 
 }

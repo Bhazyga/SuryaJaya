@@ -190,7 +190,7 @@ export default function BeliMaterial() {
             <Link
               to={{
                 pathname: `/BeliMaterialDetail/${material.id}`,
-                state: { materialData: material }  // Pass material data as state
+                state: { materialData: material }
               }}
               className="bg-gradient-to-l from-cyan-300 to-blue-400 text-white rounded hover-button p-2 mt-2"
             >
@@ -200,7 +200,7 @@ export default function BeliMaterial() {
         ))}
       </div>
 
-      {/* Paginator */}
+
       <div style={{ marginTop: "20px" }}>
         <Paginator
           currentPage={currentPage}

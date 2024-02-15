@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Pembelian extends Model
 {
     protected $fillable = [
+        'id',
         'material_id',
         'nohp',
         'namamaterial',

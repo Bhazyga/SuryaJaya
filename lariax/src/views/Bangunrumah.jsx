@@ -8,8 +8,6 @@ export default function Bangunrumah() {
   const [selectedType, setSelectedType] = useState(null);
   const [selectedType2, setSelectedType2] = useState(null);
   const [selectedType3, setSelectedType3] = useState(null);
-  // const [selectedType4, setSelectedType4] = useState(null);
-  // const [showForthSelector , setShowForthSelector] = useState(null);
   const [showSecondSelector, setShowSecondSelector] = useState(false);
   const [showThirdSelector, setShowThirdSelector] = useState(false);
   const [tampilanPilihanKedua, setPilihanKedua] = useState(false);
@@ -20,7 +18,6 @@ export default function Bangunrumah() {
   const [k2kanan, setk2kanan] = useState('');
   const [k3kanan, setk3kanan] = useState('');
   const [k3kiri, setk3kiri] = useState('');
-  // const [materials, setMaterials] = useState([]);
   const [eigenValueMatrix, setEigenValueMatrix] = useState([]);
   const [totalEigenCalculated,setTotalEigenCalculated] = useState([]);
   const [averageEigenValues,setAverageEigenValues] = useState([]);
@@ -35,20 +32,18 @@ export default function Bangunrumah() {
 
   const [kriteriaAverageValues, setKriteriaAverageValues] = useState([]);
 
-// Calculate kriteriaAverageValues based on averageEigenValues
 useEffect(() => {
   if (averageEigenValues.length > 0) {
-    const kriteriaAvgValues = averageEigenValues.slice(0, 3); // Assuming the first three values correspond to the criteria
+    const kriteriaAvgValues = averageEigenValues.slice(0, 3);
     setKriteriaAverageValues(kriteriaAvgValues);
   }
 }, [averageEigenValues]);
 
 const MATERIAL_CATEGORIES = ['batu', 'semen', 'genteng', 'fondasi', 'pasir'];
 
-// Get the first recommended material for each category
 const recommendedMaterials = MATERIAL_CATEGORIES.map(category => {
   const filteredMaterials = materials && materials.filter(material => {
-      return material.kategori === category && material.harga <= 950000; // Adjust the condition based on your criteria
+      return material.kategori === category && material.harga <= 950000;
   });
   return filteredMaterials && filteredMaterials.length > 0 ? filteredMaterials[0] : null;
 });

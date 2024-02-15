@@ -52,16 +52,18 @@ export default function DetailMaterial() {
   };
 
   const handlePurchase = () => {
+    const nomorhp = parseInt(nohp);
     axiosClient.post("/pembelian", {
         material_id: material.id,
         quantity: quantity,
         namamaterial: material.nama,
         namapembeli: user.name,
-        nohp: nohp,
+        nohp: nomorhp,
         alamat: alamat,
         status: 'belum dikonfirmasi'
       })
       .then((response) => {
+        console.log(axiosClient.post);
         Swal.fire({
           icon: 'success',
           title: 'Pembelian Berhasil!',
@@ -169,8 +171,7 @@ export default function DetailMaterial() {
         </div>
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={handlePurchase} // Call handlePurchase function on button click
-        >
+          onClick={handlePurchase} >
           Beli
         </button>
         <Link

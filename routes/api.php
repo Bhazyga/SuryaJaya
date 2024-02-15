@@ -41,7 +41,7 @@ Route::get('/BeliMaterialDetail/{id}', [MaterialController::class, 'detailUserBe
 
 Route::post('/pembelian', [PembelianController::class, 'store']);
 Route::get('/riwayatpembelian', [PembelianController::class, 'index']);
-Route::put('/konfirmasipembelian/{id}', [PembelianController::class, 'konfirmasi']);
+Route::put('/datapembelian/{id}', [PembelianController::class, 'konfirmasi']);
 
 
 

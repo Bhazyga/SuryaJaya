@@ -15,20 +15,24 @@ export default function DataPembelian() {
       });
   }, []);
 
-  const handleStatusChange = (id, material_id, nohp, namamaterial, quantity, alamat, namapembeli) => {
-    // Convert 'nohp' to a string
-    const phoneNumber = nohp.toString();
-
-    // Make a request to update the status to "Berhasil Dibeli"
-    axiosClient.put(`/konfirmasipembelian/${id}`, { status: 'Berhasil Dibeli', material_id, nohp: phoneNumber, namamaterial, quantity, alamat, namapembeli })
+  const handleStatusChange = (id) => {
+    // Send a POST request to update the status of the purchase with the given ID
+    axiosClient.put(`/datapembelian/${id}`)
       .then(response => {
-        // Handle success if needed
+        // Update the riwayatPembelian state after successful status change
+        const updatedRiwayatPembelian = riwayatPembelian.map(riwayat => {
+          if (riwayat.id === id) {
+            // Update the status of the specific purchase
+            return { ...riwayat, status: 'Pembelian Berhasil' };
+          }
+          return riwayat;
+        });
+        setRiwayatPembelian(updatedRiwayatPembelian);
       })
       .catch(error => {
         console.error("Error updating status:", error);
       });
   };
-
 
   return (
     <div>
@@ -44,7 +48,7 @@ export default function DataPembelian() {
             <th>No HP</th>
             <th>Status</th>
             <th>Waktu Pembelian</th>
-            <th>Action</th> {/* Add this header for the action column */}
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -58,13 +62,11 @@ export default function DataPembelian() {
               <td>{riwayat.nohp}</td>
               <td>{riwayat.status}</td>
               <td>{new Date(riwayat.created_at).toLocaleString()}</td>
-              <td  >
-                {/* Add a button to handle changing the status */}
-                {riwayat.status !== "Selesai Berhasil Di Beli" && (
-           <button className="btn bg-green-400" onClick={() => handleStatusChange(riwayat.id, riwayat.material_id,riwayat.nohp,riwayat.namamaterial,riwayat.quantity,riwayat.alamat,riwayat.namapembeli)}>
-           Konfirmasi Pembelian
-         </button>
-
+              <td>
+                {riwayat.status !== "Pembelian Berhasil" && (
+                  <button className="btn bg-green-400" onClick={() => handleStatusChange(riwayat.id)}>
+                    Konfirmasi <br/> Pembelian
+                  </button>
                 )}
               </td>
             </tr>
